@@ -1,7 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+// 添加类型定义
+type ZodiacScores = {
+  [key: string]: {
+    [key: string]: number;
+  };
+};
+
 // 完整的星座匹配规则表
-const zodiacCompatibility = {
+const zodiacCompatibility: ZodiacScores = {
   '白羊座': {
     '白羊座': 85, '金牛座': 65, '双子座': 92, '巨蟹座': 68,
     '狮子座': 95, '处女座': 62, '天秤座': 88, '天蝎座': 70,
@@ -66,7 +73,7 @@ const zodiacCompatibility = {
 }
 
 function getCompatibilityScore(zodiac1: string, zodiac2: string): number {
-  return zodiacCompatibility[zodiac1]?.[zodiac2] || 75
+  return zodiacCompatibility[zodiac1]?.[zodiac2] ?? 75;
 }
 
 // 更丰富的匹配消息
@@ -78,7 +85,7 @@ function getCompatibilityMessage(score: number): string {
   if (score >= 75) return '还不错哦！你们的星座可以互相理解！💫'
   if (score >= 70) return '可以发展！虽然有些挑战，但值得努力！🌟'
   if (score >= 65) return '需要更多包容，但也有独特的吸引力！✨'
-  return '星座相性有点考验，但真爱可以超越一���！💝'
+  return '星座相性有点考验，但真爱可以超越一切！💝'
 }
 
 export async function POST(request: NextRequest) {
