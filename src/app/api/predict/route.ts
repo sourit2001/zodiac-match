@@ -24,6 +24,7 @@ const zodiacCompatibility = {
   },
   '狮子座': {
     '白羊座': 95, '金牛座': 72, '双子座': 92, '巨蟹座': 75,
+    
     '狮子座': 90, '处女座': 75, '天秤座': 92, '天蝎座': 78,
     '射手座': 96, '摩羯座': 70, '水瓶座': 88, '双鱼座': 82
   },
@@ -77,7 +78,7 @@ function getCompatibilityMessage(score: number): string {
   if (score >= 75) return '还不错哦！你们的星座可以互相理解！💫'
   if (score >= 70) return '可以发展！虽然有些挑战，但值得努力！🌟'
   if (score >= 65) return '需要更多包容，但也有独特的吸引力！✨'
-  return '星座相性有点考验，但真爱可以超越一切！💝'
+  return '星座相性有点考验，但真爱可以超越一���！💝'
 }
 
 export async function POST(request: NextRequest) {
@@ -130,7 +131,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('API Error:', error)
     return new NextResponse(
-      JSON.stringify({ success: false, error: '预���失败，请重试' }),
+      JSON.stringify({ success: false, error: '预测失败，请重试' }),
       {
         status: 500,
         headers: {
