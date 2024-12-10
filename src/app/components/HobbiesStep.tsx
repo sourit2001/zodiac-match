@@ -2,11 +2,22 @@
 
 import { FC } from 'react'
 
+type Person = {
+  name: string;
+  zodiac: string;
+  hobbies: string[];
+}
+
+type FormData = {
+  person1: Person;
+  person2: Person;
+}
+
 interface HobbiesStepProps {
-  person1: any
-  person2: any
-  errors: any
-  setFormData: (data: any) => void
+  person1: Person;
+  person2: Person;
+  errors: any;
+  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
 }
 
 const HOBBY_OPTIONS = {
@@ -17,7 +28,7 @@ const HOBBY_OPTIONS = {
 
 const HobbiesStep: FC<HobbiesStepProps> = ({ person1, person2, errors, setFormData }) => {
   const handleHobbyToggle = (person: 'person1' | 'person2', hobby: string) => {
-    setFormData(prev => {
+    setFormData((prev: FormData) => {
       const currentHobbies = prev[person].hobbies
       const newHobbies = currentHobbies.includes(hobby)
         ? currentHobbies.filter(h => h !== hobby)
