@@ -1,5 +1,4 @@
 import React from 'react'
-import { UseFormRegister } from 'react-hook-form'
 
 // 添加类型定义
 type Person = {
@@ -16,10 +15,9 @@ interface BasicInfoStepProps {
   formData: FormData;
   setFormData: React.Dispatch<React.SetStateAction<FormData>>;
   errors: any;
-  register: UseFormRegister<any>;
 }
 
-const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ formData, setFormData, errors, register }) => {
+const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ formData, setFormData, errors }) => {
   const { person1, person2 } = formData;
 
   return (
@@ -36,7 +34,6 @@ const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ formData, setFormData, er
             ...prev,
             person1: { ...prev.person1, name: e.target.value }
           }))}
-          {...register('person1.name', { required: true })}
         />
         {/* ... 其他代码保持不变 ... */}
       </div>
