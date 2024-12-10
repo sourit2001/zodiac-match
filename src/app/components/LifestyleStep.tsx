@@ -2,11 +2,25 @@
 
 import { FC } from 'react'
 
+type Person = {
+  name: string;
+  zodiac: string;
+  hobbies: string[];
+  lifestyle: {
+    [key: string]: string;
+  };
+}
+
+type FormData = {
+  person1: Person;
+  person2: Person;
+}
+
 interface LifestyleStepProps {
-  person1: any
-  person2: any
-  errors: any
-  setFormData: (data: any) => void
+  person1: Person;
+  person2: Person;
+  errors: any;
+  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
 }
 
 const LIFESTYLE_OPTIONS = {
@@ -17,7 +31,7 @@ const LIFESTYLE_OPTIONS = {
 
 const LifestyleStep: FC<LifestyleStepProps> = ({ person1, person2, errors, setFormData }) => {
   const handleLifestyleChange = (person: 'person1' | 'person2', category: string, value: string) => {
-    setFormData(prev => ({
+    setFormData((prev: FormData) => ({
       ...prev,
       [person]: {
         ...prev[person],
